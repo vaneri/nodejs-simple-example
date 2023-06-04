@@ -6,6 +6,7 @@ class JsonPlaceholderService {
         console.log('its happening');
         axios.interceptors.request.use(config => {
             console.log(`request intercepted config: ${config.url}`);
+            config.timeout = config.timeout || 2500;
             return config;
         });
         axios.interceptors.response.use(config => {
@@ -17,7 +18,7 @@ class JsonPlaceholderService {
 
     public static async getUser(userId: string): Promise<any> {
         const [{ data: user }, { data: posts }] = await Promise.all([
-            axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`),
+            axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`, { timeout: 2000 }),
             axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
         ]);
         user.posts = posts || [];
