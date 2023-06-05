@@ -1,4 +1,4 @@
-# nodejs-simple-example
+# simple-nodej-express-example
 A very basic and simple example using nodejs, axios, jest, docker 
 
 - How to get it started?
